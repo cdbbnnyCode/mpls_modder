@@ -243,7 +243,7 @@ def main():
     ofname = sys.argv[2]
     if fname.endswith('.mesg') or fname.endswith('.bmg') or ofname.endswith('.txt'):
         # convert BMG messages to text
-        with open(fname, 'rb') as f, open(ofname, 'w') as of:
+        with open(fname, 'rb') as f, open(ofname, 'w', encoding='utf-8') as of:
             mesg = MESGFile()
             mesg.read(f)
             of.write("BMG decoded text file\n")
@@ -251,7 +251,7 @@ def main():
             for entry in mesg.entries:
                 of.write(str(entry) + '\n')
     else:
-        with open(fname, 'r') as f, open(ofname, 'wb') as of:
+        with open(fname, 'r', encoding='utf-8') as f, open(ofname, 'wb') as of:
             mesg = MESGFile()
             mesg.read_txt(f)
             mesg.write(of)
